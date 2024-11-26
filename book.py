@@ -1,4 +1,5 @@
 import csv
+from tabulate import tabulate
 
 class Book:
     def __init__(self, book_id, title, author, year, category, price):
@@ -24,7 +25,14 @@ class ManageBook:
             with open(self.file_name, mode="r", newline="", encoding="utf-8") as file:
                 reader = csv.DictReader(file)
                 for row in reader:
-                    book = Book(row["ID"], row["Title"], row["Category"], row["Author"], row["Year"], row["Price"])
+                    book = Book(
+                        row["ID"], 
+                        row["Title"], 
+                        row["Author"], 
+                        row["Year"], 
+                        row["Category"], 
+                        row["Price"]
+                    )
                     self.book_list.append(book)
         except FileNotFoundError:
             pass  
@@ -32,15 +40,15 @@ class ManageBook:
     # Save data to CSV
     def save_data(self):
         with open(self.file_name, mode="w", newline="", encoding="utf-8") as file:
-            writer = csv.DictWriter(file, fieldnames=["ID", "Category", "Title", "Author", "Year", "Price"])
+            writer = csv.DictWriter(file, fieldnames=["ID", "Title", "Author", "Year", "Category", "Price"])
             writer.writeheader()
             for book in self.book_list:
                 writer.writerow({
                     "ID": book.book_id,
-                    "Category": book.category,
                     "Title": book.title,
                     "Author": book.author,
                     "Year": book.year,
+                    "Category": book.category,
                     "Price": book.price,
                 })
 
@@ -57,8 +65,14 @@ class ManageBook:
             print("There are no books on the list.")
         else:
             print("Book List:")
-            for book in self.book_list:
-                print(f" - {book}")
+            # Format harga dengan Rp dan tanda koma
+            table = [
+                [book.book_id, book.title, book.category, book.author, book.year, f"Rp. {int(book.price):,}"]
+                for book in self.book_list
+            ]
+            headers = ["ID", "Title", "Category", "Author", "Year", "Price"]
+            print(tabulate(table, headers, tablefmt="grid"))
+
 
     # UPDATE
     def update_book(self, book_id, new_title=None, new_category=None, new_author=None, new_year=None, new_price=None):
@@ -116,9 +130,9 @@ if __name__ == "__main__":
         if choice == "1":
             book_id = input("Enter Book ID: ")
             title = input("Enter Book Title: ")
-            category = input("Enter Book Category: ")
             author = input("Enter Book Author: ")
             year = input("Enter Book Year: ")
+            category = input("Enter Book Category: ")
             price = input("Enter Book Price: ")
             manage.add_book(book_id, title, author, year, category, price)
         elif choice == "2":

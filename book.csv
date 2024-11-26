@@ -1,2 +1,12 @@
-ID,Category,Title,Author,Year,Price
-103,Programing,Python,Fariz,2024,100000
+ID,Title,Author,Year,Category,Price
+201,Atomic Habits,James Clear,2018,Self-Development,170000
+202,Deep Work,Cal Newport,2016,Self-Development,190000
+203,Educated,Tara Westover,2018,Biography,150000
+204,Becoming,Michelle Obama,2018,Biography,180000
+205,The Silent Patient,Alex Michaelides,2019,Thriller,120000
+206,It Ends With Us,Colleen Hoover,2016,Romance,100000
+207,Daring Greatly,Brené Brown,2012,Psychology,140000
+208,The Psychology of Money,Morgan Housel,2020,Finance,160000
+209,Rich Dad Poor Dad,Robert Kiyosaki,1997,Finance,150000
+210,Where the Crawdads Sing,Delia Owens,2018,Drama,130000
+

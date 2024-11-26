@@ -22,10 +22,10 @@ class Transaction:
         else:
             print("Detail Keranjang:")
             table = [
-                [index + 1, item["buku"].title, item["jumlah"], f"Rp{int(item['buku'].price) * item['jumlah']:,}"]
+                [index + 1,item["buku"].book_id ,item["buku"].title, item["jumlah"], f"Rp{int(item['buku'].price) * item['jumlah']:,}"]
                 for index, item in enumerate(self.keranjang)
             ]
-            headers = ["No", "Title", "Jumlah", "Total Harga"]
+            headers = ["No", "ID", "Title", "Jumlah", "Total Harga"]
             print(tabulate(table, headers, tablefmt="grid"))
 
         # UPDATE - Ganti buku di keranjang dengan buku baru dan jumlahnya
@@ -53,6 +53,18 @@ class Transaction:
     def reset_keranjang(self):
         self.keranjang.clear()
         print("Keranjang telah direset.")
+        
+    def detail_pemesanan(self):
+        if not self.keranjang:
+            print("Keranjang kosong.")
+        else:
+            print("Detail Pemesanan:")
+            table = [
+                [index + 1, item["buku"].title, item["jumlah"], f"Rp{int(item['buku'].price) * item['jumlah']:,}"]
+                for index, item in enumerate(self.keranjang)
+            ]
+            headers = ["No", "Title", "Jumlah", "Total Harga"]
+            print(tabulate(table, headers, tablefmt="grid"))
 
     # READ - Hitung total pembayaran
     def hitung_total(self):

@@ -45,11 +45,12 @@ def main():
                     
                     check = input('Lanjutkan? (y/n) : ')
                
-                    if check == 'n' or 'N':
+                    if check.lower() == 'n':
                         break
                
                 else:
                     print(f"Buku dengan ID '{book_id}' tidak ditemukan.")
+                    break
 
         # Edit book from transaction.py -> edit_buku()
         elif choice == "3":

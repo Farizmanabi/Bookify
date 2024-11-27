@@ -59,12 +59,15 @@ class Transaction:
             print("Keranjang kosong.")
         else:
             print("Detail Pemesanan:")
+            total = sum(int(item["buku"].price) * item["jumlah"] for item in self.keranjang)
             table = [
                 [index + 1, item["buku"].title, item["jumlah"], f"Rp{int(item['buku'].price) * item['jumlah']:,}"]
                 for index, item in enumerate(self.keranjang)
             ]
             headers = ["No", "Title", "Jumlah", "Total Harga"]
             print(tabulate(table, headers, tablefmt="grid"))
+            print(f"\nTotal Pembayaran: Rp{total:,}")
+            return total
 
     # READ - Hitung total pembayaran
     def hitung_total(self):

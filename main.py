@@ -1,6 +1,6 @@
 from book import ManageBook
 from transaction import Transaction
-
+    
 def main():
     print(r'''
           
@@ -19,22 +19,27 @@ def main():
     while True:
         print("\n=== Menu Utama ===")
         print("1. Lihat Daftar Buku")
-        print("2. Tambahkan Buku ke Keranjang")
-        print("3. Edit Buku dalam Keranjang")
-        print("4. Hapus Buku dari Keranjang")
-        print("5. Reset Semua Transaksi")
-        print("6. Lihat Detail Pemesanan")
-        print("7. Bayar Pesanan")
-        print("8. Keluar dari Program\n")
+        print("2. Cari buku")
+        print("3. Tambahkan Buku ke Keranjang")
+        print("4. Edit Buku dalam Keranjang")
+        print("5. Hapus Buku dari Keranjang")
+        print("6. Reset Semua Transaksi")
+        print("7. Lihat Detail Pemesanan")
+        print("8. Bayar Pesanan")
+        print("9. Keluar dari Program\n")
 
         choice = input("Pilih opsi: ")
 
         # Read book from book.py -> read_book()
         if choice == "1":
             manage.read_book()
+            
+        if choice == "2":
+            keyword = input("Cari buku bedasarkan (judul/penulis/kategori/tahun/harga) : ")
+            manage.cari_buku(keyword)
         
         # Add book from transaction.py -> tambah_buku()
-        elif choice == "2":
+        elif choice == "3":
             while True:
                 manage.read_book()
                 book_id = input("Masukkan ID buku yang ingin ditambahkan ke keranjang: ")
@@ -53,7 +58,7 @@ def main():
                     break
 
         # Edit book from transaction.py -> edit_buku()
-        elif choice == "3":
+        elif choice == "4":
             transactions.lihat_keranjang() 
             if not transactions.keranjang:
                 print("Tidak ada buku yang bisa diedit.")
@@ -76,7 +81,7 @@ def main():
                 transactions.lihat_keranjang()
             
         # Delete book from transaction.py -> hapus_buku()
-        elif choice == "4":
+        elif choice == "5":
             transactions.lihat_keranjang()
             if not transactions.keranjang:
                 print("Tidak ada buku yang bisa dihapus.")
@@ -85,19 +90,19 @@ def main():
                 transactions.hapus_buku(book_id)
         
         # Reset book from transaction.py -> reset_keranjang()
-        elif choice == "5":
+        elif choice == "6":
             transactions.reset_keranjang()
 
         # Read book from transaction.py -> reset_keranjang()
-        elif choice == "6":
+        elif choice == "7":
             transactions.detail_pemesanan()
             
         # pay transaction from transaction.py -> bayar_pesanan()
-        elif choice == "7":
+        elif choice == "8":
             transactions.bayar_pesanan()
             
         # Keluar dari Program
-        elif choice == "8":  
+        elif choice == "9":  
             print("Keluar dari program. Terima kasih telah menggunakan Bookify!")
             break
 

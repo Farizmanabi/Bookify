@@ -35,7 +35,7 @@ class ManageBook:
                     )
                     self.book_list.append(book)
         except FileNotFoundError:
-            pass  
+            pass
 
     # Save data to CSV
     def save_data(self):
